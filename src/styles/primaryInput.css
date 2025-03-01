@@ -1,0 +1,33 @@
+.input-wrapper {
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: start;
+}
+
+.input-wrapper label {
+    margin-bottom: 10px;
+}
+
+.input-wrapper .input-content {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+}
+
+.input-wrapper .input-content .icon {
+    padding: 12px;
+    background-color: var(--primary-color);
+    border-radius: 0 8px 8px 0;
+}
+
+.input-wrapper .input-content .icon img {
+    height: 20px;
+}
+
+.input-wrapper .input-content input {
+    border: none;
+    border-radius: 8px 0 0 8px;
+    background-color: var(--gray-secondary-bg);
+    padding: 12px 0 12px 20px;
+    width: 100%;
+}
