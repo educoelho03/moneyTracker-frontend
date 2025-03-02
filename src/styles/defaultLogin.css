@@ -1,3 +1,4 @@
+/* Estilos gerais */
 main {
     display: flex;
     flex-direction: row;
@@ -23,7 +24,6 @@ main .main-section {
 main .form-section {
     flex-grow: 0.3;
     padding: 0 35px;
-    
 }
 
 main img {
@@ -36,6 +36,7 @@ main h2 {
     margin-bottom: 45px;
 }
 
+/* Estilos dos botões */
 main button {
     width: 100%;
     border-radius: 8px;
@@ -47,7 +48,61 @@ main button {
     cursor: pointer;
 }
 
-main .btn-wrapper {
+main .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0px 8px 12px rgba(148.23004603385925, 64.33935597538948, 255, 0.2);
+}
+
+main .btn-secondary {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Estilos do formulário */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 34px;
+}
+
+form span {
+    font-size: 14px;
+    text-decoration: underline;
+    color: var(--secondary-color);
+    text-align: end;
+}
+
+.input-wrapper {
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: start;
+}
+
+.input-wrapper label {
+    margin-bottom: 10px;
+}
+
+.input-container {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    background-color: var(--gray-secondary-bg);
+    margin-top: 10px;
+}
+
+.input-container input {
+    border: none;
+    border-radius: 8px 0 0 8px;
+    background-color: var(--gray-secondary-bg);
+    padding: 12px 0 12px 20px;
+    width: 100%;
+}
+
+.btn-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +111,7 @@ main .btn-wrapper {
     gap: 30px;
 }
 
-main .btn-wrapper .divider {
+.btn-wrapper .divider {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,19 +123,8 @@ main .btn-wrapper .divider {
     text-transform: uppercase;
 }
 
-main .btn-wrapper .divider div {
+.btn-wrapper .divider div {
     flex-grow: 1;
     height: 2px;
-    background-color: var(--gray-bg); 
-}
-
-main .btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    box-shadow:0px 8px 12px rgba(148.23004603385925, 64.33935597538948, 255, 0.20000000298023224);
-}
-
-main .btn-secundary {
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
+    background-color: var(--gray-bg);
 }
