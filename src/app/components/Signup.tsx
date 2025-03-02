@@ -1,6 +1,5 @@
 import "../../styles/defaultLogin.css";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
 
 export default function Signup() {
     const navigate = useNavigate();
