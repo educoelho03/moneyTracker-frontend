@@ -1,5 +1,6 @@
 import "../../styles/defaultLogin.css";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -22,22 +23,15 @@ export default function Signup() {
         }
     
         try {
-            const response = await fetch("http://localhost:8080/api/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name, email, password }),
+            const response = await axios.post("http://localhost:8080/api/register", {
+                name,
+                email,
+                password,
             });
     
-            const data = await response.json();
-            console.log(response.json());
-            
-    
-            if (!response.ok) {
-                throw new Error(data.message || "Erro ao cadastrar usuário");
-            }
-    
+            console.log("response: ", response);
+            console.log("response data: ", response.data);
+
             alert("Cadastro realizado com sucesso!");
             handleRedirectToLogin(); // Redireciona para a página de login
         } catch (error: any) {
