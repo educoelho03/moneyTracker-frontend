@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import "../../styles/defaultLogin.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
@@ -7,11 +8,24 @@ export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
 
     const handleRedirectSignup = () => {
         navigate('/signup');
     };
+
+    const handleShowAlert = () => {
+        toast.error('Credenciais invalidas', {
+            position: "top-left",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Slide,
+        });
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,19 +43,17 @@ export default function Login() {
             console.log(response.data);
             navigate('/home');
         } catch (err) {
-            setError("Falha na autenticação. Verifique suas credenciais.");
-            console.error(err);
+            handleShowAlert();
         }
     };
 
     return (
+        <>
+        <ToastContainer />
         <main>
             <section className="form-section">
                 <img src="src/assets/svg/logo.svg" alt="Logo" />
                 <h2>Login into your account</h2>
-
-                {error && <p className="error-message">{error}</p>}
-
                 <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
                         <label htmlFor="email">Email</label>
@@ -91,5 +103,6 @@ export default function Login() {
                 <img src="src/assets/svg/main-ilustration.svg" alt="Main Illustration" />
             </section>
         </main>
+        </>
     );
 }

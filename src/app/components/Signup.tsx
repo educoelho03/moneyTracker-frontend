@@ -28,9 +28,6 @@ export default function Signup() {
                 email,
                 password,
             });
-    
-            console.log("response: ", response);
-            console.log("response data: ", response.data);
 
             alert("Cadastro realizado com sucesso!");
             handleRedirectToLogin(); // Redireciona para a página de login

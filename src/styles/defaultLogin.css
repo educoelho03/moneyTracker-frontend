@@ -128,3 +128,9 @@ form span {
     height: 2px;
     background-color: var(--gray-bg);
 }
+
+.error-message {
+    background-color: rgb(223, 132, 132);
+    color: white;
+    width: 100%;
+}

@@ -18,7 +18,6 @@ interface LoginResponse {
   
     const data: LoginResponse = await response.json();
   
-    // Armazena o token e o nome no sessionStorage
     sessionStorage.setItem('auth-token', data.token);
     sessionStorage.setItem('username', data.name);
   
