@@ -41,7 +41,7 @@ export default function Login() {
             // Armazena o token no localStorage
             localStorage.setItem('jwtToken', token);
             console.log(response.data);
-            navigate('/home');
+            navigate('/dashboard');
         } catch (err) {
             handleShowAlert();
         }

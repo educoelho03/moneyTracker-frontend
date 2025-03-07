@@ -29,6 +29,8 @@ export default function Signup() {
                 password,
             });
 
+            localStorage.setItem("name", name);
+
             alert("Cadastro realizado com sucesso!");
             handleRedirectToLogin(); // Redireciona para a página de login
         } catch (error: any) {

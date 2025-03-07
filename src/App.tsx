@@ -2,7 +2,8 @@ import React from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './app/components/Login';
 import Signup from './app/components/Signup';
-import HomePage from './app/components/HomePage';
+import DashboardPage from './app/components/DashboardPage';
+import Transactions from './app/components/Transactions';
 
 // Componente de rota privada
 const PrivateRoute = () => {
@@ -19,8 +20,11 @@ function App() {
             <Route path="/signup" element={<Signup />} />
 
             {/* Rotas protegidas */}
-            <Route path="/home" element={<PrivateRoute />}>
-                <Route index element={<HomePage />} /> {/* Rota padrão para /home */}
+            <Route path="/dashboard" element={<PrivateRoute />}>
+                <Route index element={<DashboardPage />} /> {/* Rota padrão para /dashboard */}
+            </Route>
+            <Route path="/transacoes" element={<PrivateRoute />}>
+                <Route index element={<Transactions />} /> {/* Rota padrão para /transacoes */}
             </Route>
         </Routes>
     );

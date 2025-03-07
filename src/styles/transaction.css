@@ -1,0 +1,25 @@
+.transaction-container {
+    width: 100%;
+}
+
+
+.transaction-content {
+    padding: 20px;
+}
+
+.transaction-header {
+    display: flex;
+    margin-bottom: 2rem;
+} 
+
+.title {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.transaction-button {
+    margin-left: auto;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
