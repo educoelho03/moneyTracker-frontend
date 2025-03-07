@@ -1,29 +1,48 @@
 import "../../styles/defaultLogin.css";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import React from 'react';
 
 export default function Signup() {
     const navigate = useNavigate();
 
     const handleRedirectToLogin = () => {
-        navigate('/login'); // Redireciona para a rota /login
+        navigate('/login'); 
+    };
+
+    const handleShowAlert = (message: string, onCloseCallback?: () => void) => {
+        toast.error(message, {
+            position: "top-left",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Slide,
+            onClose: onCloseCallback, 
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-    
+
         const name = (document.getElementById("name") as HTMLInputElement).value;
         const email = (document.getElementById("email") as HTMLInputElement).value;
         const password = (document.getElementById("password") as HTMLInputElement).value;
         const repeatPassword = (document.getElementById("repeat-password") as HTMLInputElement).value;
-    
+
+        console.log("Valores do formulário:", { name, email, password, repeatPassword });
+
         if (password !== repeatPassword) {
-            alert("As senhas precisam ser iguais!");
+            handleShowAlert("As senhas precisam ser iguais.");
             return;
         }
-    
+
         try {
-            const response = await axios.post("http://localhost:8080/api/register", {
+            await axios.post("http://localhost:8080/api/register", {
                 name,
                 email,
                 password,
@@ -31,22 +50,26 @@ export default function Signup() {
 
             localStorage.setItem("name", name);
 
-            alert("Cadastro realizado com sucesso!");
-            handleRedirectToLogin(); // Redireciona para a página de login
+            // Exibe o toast de sucesso e redireciona após o toast ser fechado
+            handleShowAlert("Cadastro realizado com sucesso!", () => {
+                handleRedirectToLogin(); // Redireciona para a página de login
+            });
         } catch (error: any) {
-            alert(error.message);
+            console.error("Erro ao cadastrar:", error);
+            handleShowAlert("Falha ao realizar o cadastro.");
         }
     };
-    
 
     return (
-        <main>
+        <>
+        <ToastContainer /> 
+                <main>
             <section className="form-section">
                 <img src="src/assets/svg/logo.svg" alt="Logo" />
                 <h2>Signup your Account</h2>
 
                 <form onSubmit={handleSubmit}>
-                    {/* Campo de nome */}
+                    {/* Campos do formulário */}
                     <div className="input-wrapper">
                         <label htmlFor="name">Name</label>
                         <div className="input-container">
@@ -54,11 +77,11 @@ export default function Signup() {
                                 type="text"
                                 id="name"
                                 placeholder="Your name"
+                                required
                             />
                         </div>
                     </div>
 
-                    {/* Campo de e-mail */}
                     <div className="input-wrapper">
                         <label htmlFor="email">Email Address</label>
                         <div className="input-container">
@@ -66,11 +89,11 @@ export default function Signup() {
                                 type="email"
                                 id="email"
                                 placeholder="yourEmail@email.com"
+                                required
                             />
                         </div>
                     </div>
 
-                    {/* Campo de senha */}
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
                         <div className="input-container">
@@ -78,6 +101,7 @@ export default function Signup() {
                                 type="password"
                                 id="password"
                                 placeholder="Enter your password"
+                                required
                             />
                         </div>
                         <div className="input-container">
@@ -85,6 +109,7 @@ export default function Signup() {
                                 type="password"
                                 id="repeat-password"
                                 placeholder="Repeat your password"
+                                required
                             />
                         </div>
                     </div>
@@ -114,5 +139,6 @@ export default function Signup() {
                 <img src="src/assets/svg/main-ilustration.svg" alt="Main Illustration" />
             </section>
         </main>
+        </>
     );
 }

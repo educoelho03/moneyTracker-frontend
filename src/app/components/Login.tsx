@@ -90,6 +90,7 @@ export default function Login() {
                             <div></div>
                         </div>
                         <button
+                            type="button"
                             className="btn-secondary"
                             onClick={handleRedirectSignup}
                         >
