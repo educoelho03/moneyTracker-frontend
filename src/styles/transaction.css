@@ -1,25 +1,71 @@
 .transaction-container {
     width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-
 .transaction-content {
-    padding: 20px;
+    padding: 1.5rem;
 }
 
 .transaction-header {
     display: flex;
+    align-items: center;
     margin-bottom: 2rem;
-} 
+}
 
 .title {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.5rem;
     line-height: 2rem;
+    color: #333;
 }
 
 .transaction-button {
     margin-left: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.transaction-table {
+    overflow-x: auto;
+}
+
+.transaction {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.transaction thead th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.transaction td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+}
+
+.transaction tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.transaction th, .transaction td {
+    white-space: nowrap;
+}
+
+.transaction th:last-child, .transaction td:last-child {
+    text-align: center;
 }

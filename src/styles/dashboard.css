@@ -1,0 +1,142 @@
+/* Container principal do cabeçalho */
+.dashboard-header-container {
+    display: flex;
+    padding: 1.5rem;
+    align-items: center;
+}
+
+.dashboard-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #333;
+}
+
+.select-container {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.custom-select {
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* Container principal */
+.dashboard-main-container {
+    padding: 20px;
+}
+
+/* Container para Total Amount e Últimas Transações */
+.dashboard-top-container {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os contêineres */
+    margin-bottom: 20px; /* Espaçamento abaixo */
+}
+
+/* Seção de Valores totais */
+.dashboard-total-amount-container {
+    width: 60%; /* Largura para o Total Amount */
+}
+
+.dashboard-total-amount-content {
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+.dashboard-total-amount-content h3 {
+    opacity: 0.7;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.dashboard-total-number {
+    display: flex
+}
+
+.dashboard-total-amount-content p {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.add-transaction-button {
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+
+/* Seção de Valores */
+.dashboard-amount-content {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+}
+
+.amount-section {
+    text-align: left;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+}
+
+.amount-section h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.amount-section p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+
+/* Seção de Últimas Transações */
+.dashboard-last-transactions-container {
+    width: 50%; /* Largura para as últimas transações */
+}
+
+.dashboard-last-transactions-content {
+    height: 78vh;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+.dashboard-last-transactions-content h3 {
+    margin-bottom: 15px;
+}
+
+.last-transactions {
+    padding: 20px;
+}
+
+.last-transactions div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.last-transactions div:last-child {
+    border-bottom: none;
+}

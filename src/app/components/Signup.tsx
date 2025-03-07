@@ -26,6 +26,21 @@ export default function Signup() {
         });
     };
 
+    const handleShowSuccessAlert = (message: string, onCloseCallback?: () => void) => {
+        toast.success(message, {
+            position: "top-left",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Slide,
+            onClose: onCloseCallback, 
+        });
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -50,8 +65,7 @@ export default function Signup() {
 
             localStorage.setItem("name", name);
 
-            // Exibe o toast de sucesso e redireciona após o toast ser fechado
-            handleShowAlert("Cadastro realizado com sucesso!", () => {
+            handleShowSuccessAlert("Cadastro realizado com sucesso!", () => {
                 handleRedirectToLogin(); // Redireciona para a página de login
             });
         } catch (error: any) {
