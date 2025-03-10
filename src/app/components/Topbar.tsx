@@ -1,9 +1,8 @@
-import React from "react";
 import { useNavigate } from "react-router-dom"; 
 import "../../styles/topbar.css";
 
 export default function Topbar() {
-    const userName = localStorage.getItem("userName");
+    const userName = localStorage.getItem("name");
     const navigate = useNavigate();
 
     return (
@@ -15,7 +14,7 @@ export default function Topbar() {
                     <button onClick={() => navigate("/transacoes")}>Transações</button>
                 </div>
                 <div className="topbar-user">
-                    {userName && <span>Olá, {userName}</span>}
+                    <span>Olá, {userName}</span>
                 </div>
             </div>
         </div>

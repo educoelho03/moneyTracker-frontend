@@ -52,6 +52,9 @@
 }
 
 .dashboard-total-amount-content h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     opacity: 0.7;
     font-size: 18px;
     font-weight: normal;
@@ -65,6 +68,17 @@
 .dashboard-total-amount-content p {
     font-size: 30px;
     font-weight: 600;
+}
+
+.dashboard-graphic-container {
+    margin-top: 25px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 50%;
+}
+
+.dashboard-graphic-content {
+    padding: 2rem;
 }
 
 .add-transaction-button {
@@ -96,6 +110,9 @@
 }
 
 .amount-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 18px;
     font-weight: normal;
     margin-bottom: 20px;

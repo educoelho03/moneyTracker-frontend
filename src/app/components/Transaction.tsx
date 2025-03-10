@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/transaction.css";
 
+
 interface Transaction {
     name: string;
     amount: number;

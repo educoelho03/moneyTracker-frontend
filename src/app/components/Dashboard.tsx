@@ -1,8 +1,14 @@
 import { useState } from "react";
+import { IoWalletOutline } from "react-icons/io5";
+import { HiArrowTrendingUp, HiArrowTrendingDown  } from "react-icons/hi2";
+
+import { PieChart } from '@mui/x-charts/PieChart';
 import "../../styles/dashboard.css";
+import TransactionModal from "./TransactionModal";
 
 export default function Dashboard() {
     const [selectedMonth, setSelectedMonth] = useState<string>("Janeiro");
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const handleChangeMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedMonth(event.target.value);
@@ -19,7 +25,11 @@ export default function Dashboard() {
     ];
 
     const addNewTransaction = () => {
-        console.log("open modal...");
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false); // Fecha o modal
     };
 
     return (
@@ -29,26 +39,7 @@ export default function Dashboard() {
                 <div className="dashboard-title">
                     Dashboard
                 </div>
-                <div className="select-container">
-                    <select
-                        value={selectedMonth}
-                        onChange={handleChangeMonth}
-                        className="custom-select"
-                    >
-                        <option value="Janeiro">Janeiro</option>
-                        <option value="Fevereiro">Fevereiro</option>
-                        <option value="Março">Março</option>
-                        <option value="Abril">Abril</option>
-                        <option value="Maio">Maio</option>
-                        <option value="Junho">Junho</option>
-                        <option value="Julho">Julho</option>
-                        <option value="Agosto">Agosto</option>
-                        <option value="Setembro">Setembro</option>
-                        <option value="Outubro">Outubro</option>
-                        <option value="Novembro">Novembro</option>
-                        <option value="Dezembro">Dezembro</option>
-                    </select>
-                </div>
+                
             </div>
 
             {/* Container principal */}
@@ -56,7 +47,7 @@ export default function Dashboard() {
                 <div className="dashboard-top-container">
                     <div className="dashboard-total-amount-container">
                         <div className="dashboard-total-amount-content">
-                            <h3>Saldo</h3>
+                            <h3><IoWalletOutline /> Saldo</h3>
                             <div className="dashboard-total-number">
                                 <p>R$ 10,00</p>
                                 <button className="add-transaction-button" onClick={addNewTransaction}>
@@ -65,25 +56,66 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="dashboard-amount-content">
-                        <div className="amount-section">
-                            <h3>Investido</h3>
-                            <p>R$ 100</p>
+                            <div className="amount-section">
+                                <h3><HiArrowTrendingUp /> Receitas</h3>
+                                <p>R$ 200,00</p>
+                            </div>
+                            <div className="amount-section">
+                                <h3><HiArrowTrendingDown /> Despesas</h3>
+                                <p>R$ 400,00</p>
+                            </div>
                         </div>
-                        <div className="amount-section">
-                            <h3>Receitas</h3>
-                            <p>R$ 200</p>
-                        </div>
-                        <div className="amount-section">
-                            <h3>Despesas</h3>
-                            <p>-R$ 400</p>
-                        </div>
+                        <div className="dashboard-graphic-container">
+                            {/* Grafico de pizza*/}
+                            <div className="dashboard-graphic-content">
+                            <PieChart
+                                  series={[
+                                    {
+                                      data: [
+                                        { id: 0, value: 10, label: 'Despesas', color: '#E93030' },
+                                        { id: 1, value: 15, label: 'Receitas', color: '#55B02E' },
+                                      ],
+                                      innerRadius: 77,
+                                      outerRadius: 100,
+                                      paddingAngle: 0,
+                                      cornerRadius: 0,
+                                      startAngle: 0,
+                                      endAngle: 360,
+                                    },
+                                  ]}
+                                  width={400}
+                                  height={200}
+                                />
+                            </div>
                         </div>
                     </div>
+
+
 
                     {/* Seção de Últimas Transações */}
                     <div className="dashboard-last-transactions-container">
                         <div className="dashboard-last-transactions-content">
                             <h3>Últimas Transações</h3>
+                            <div className="select-container">
+                                <select
+                                    value={selectedMonth}
+                                    onChange={handleChangeMonth}
+                                    className="custom-select"
+                                >
+                                    <option value="Janeiro">Janeiro</option>
+                                    <option value="Fevereiro">Fevereiro</option>
+                                    <option value="Março">Março</option>
+                                    <option value="Abril">Abril</option>
+                                    <option value="Maio">Maio</option>
+                                    <option value="Junho">Junho</option>
+                                    <option value="Julho">Julho</option>
+                                    <option value="Agosto">Agosto</option>
+                                    <option value="Setembro">Setembro</option>
+                                    <option value="Outubro">Outubro</option>
+                                    <option value="Novembro">Novembro</option>
+                                    <option value="Dezembro">Dezembro</option>
+                                </select>
+                            </div>
                             <div className="last-transactions">
                                 {latestTransactions.map((transaction, index) => (
                                     <div key={index}>
@@ -93,10 +125,13 @@ export default function Dashboard() {
                                     </div>
                                 ))}
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+
+            {modalOpen && <TransactionModal onClose={closeModal} />}
         </>
     );
 }
