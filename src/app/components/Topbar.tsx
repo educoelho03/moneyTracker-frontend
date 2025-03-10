@@ -9,7 +9,7 @@ export default function Topbar() {
     return (
         <div className="topbar-container">
             <div className="topbar-content">
-                <img src="src/assets/svg/logo.svg" alt="Logo" />
+                <img src="src/assets/svg/money-tracker-logo.png" className="topbar-logo-image" alt="Logo" />
                 <div className="topbar-links">
                     <button onClick={() => navigate("/dashboard")}>Dashboard</button> 
                     <button onClick={() => navigate("/transacoes")}>Transações</button>

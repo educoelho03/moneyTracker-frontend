@@ -26,7 +26,7 @@ export default function Signup() {
         });
     };
 
-    const handleShowSuccessAlert = (message: string, onCloseCallback?: () => void) => {
+    const handleShowSuccess = (message: string, onCloseCallback?: () => void) => {
         toast.success(message, {
             position: "top-left",
             autoClose: 3500,
@@ -47,9 +47,7 @@ export default function Signup() {
         const name = (document.getElementById("name") as HTMLInputElement).value;
         const email = (document.getElementById("email") as HTMLInputElement).value;
         const password = (document.getElementById("password") as HTMLInputElement).value;
-        const repeatPassword = (document.getElementById("repeat-password") as HTMLInputElement).value;
-
-        console.log("Valores do formulário:", { name, email, password, repeatPassword });
+        const repeatPassword = (document.getElementById("repeat-password") as HTMLInputElement).value;7
 
         if (password !== repeatPassword) {
             handleShowAlert("As senhas precisam ser iguais.");
@@ -65,11 +63,11 @@ export default function Signup() {
 
             localStorage.setItem("name", name);
 
-            handleShowSuccessAlert("Cadastro realizado com sucesso!", () => {
+            // Exibe o toast de sucesso e redireciona após o toast ser fechado
+            handleShowSuccess("Cadastro realizado com sucesso!", () => {
                 handleRedirectToLogin(); // Redireciona para a página de login
             });
         } catch (error: any) {
-            console.error("Erro ao cadastrar:", error);
             handleShowAlert("Falha ao realizar o cadastro.");
         }
     };
@@ -77,10 +75,10 @@ export default function Signup() {
     return (
         <>
         <ToastContainer /> 
-                <main>
+            <main>
             <section className="form-section">
-                <img src="src/assets/svg/logo.svg" alt="Logo" />
-                <h2>Signup your Account</h2>
+                <img src="src/assets/svg/money-tracker-logo.png" className="logo-sigunp-image" alt="Logo" />
+                <h2 style={{marginBottom: '15px'}}>Signup your Account</h2>
 
                 <form onSubmit={handleSubmit}>
                     {/* Campos do formulário */}

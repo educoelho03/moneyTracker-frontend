@@ -40,7 +40,6 @@ export default function Login() {
 
             // Armazena o token no localStorage
             localStorage.setItem('jwtToken', token);
-            console.log(response.data);
             navigate('/dashboard');
         } catch (err) {
             handleShowAlert();
@@ -52,7 +51,7 @@ export default function Login() {
         <ToastContainer />
         <main>
             <section className="form-section">
-                <img src="src/assets/svg/logo.svg" alt="Logo" />
+                <img src="src/assets/svg/money-tracker-logo.png" className="logo-login-image" alt="Logo"/>
                 <h2>Login into your account</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
@@ -100,7 +99,7 @@ export default function Login() {
                 </form>
             </section>
             <section className="main-section">
-                <h1>You should, moveIT!</h1>
+                <h1>Track your money, Now!!</h1>
                 <img src="src/assets/svg/main-ilustration.svg" alt="Main Illustration" />
             </section>
         </main>
