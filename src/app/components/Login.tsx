@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Slide, ToastContainer, toast } from "react-toastify";
-import "../../styles/defaultLogin.css";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { FcGoogle } from "react-icons/fc";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import axios from 'axios';
+
+import "../../styles/defaultLogin.css";
+
 
 export default function Login() {
     const navigate = useNavigate();

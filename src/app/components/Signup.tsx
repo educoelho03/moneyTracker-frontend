@@ -1,10 +1,12 @@
 import  React, { useState } from "react";
-import "../../styles/defaultLogin.css";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import axios from "axios";
+
+import "../../styles/defaultLogin.css";
+
 
 export default function Signup() {
     const [isLoading, setIsLoading] = useState<boolean>(false)

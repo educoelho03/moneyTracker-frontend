@@ -1,18 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoWalletOutline } from "react-icons/io5";
 import { HiArrowTrendingUp, HiArrowTrendingDown  } from "react-icons/hi2";
-
 import { PieChart } from '@mui/x-charts/PieChart';
-import "../../styles/dashboard.css";
 import TransactionModal from "./TransactionModal";
+import axios from "axios";
+
+import "../../styles/dashboard.css";
+
+interface Transaction {
+    name: string;
+    amount: number;
+    transactionType: string;
+    transactionCategory: string;
+    date: string;
+}
 
 export default function Dashboard() {
+    const [data, setData] = useState<Transaction[]>([])
     const [selectedMonth, setSelectedMonth] = useState<string>("Janeiro");
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const handleChangeMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedMonth(event.target.value);
     };
+
+    const getTransactions = async () => {
+        try {
+            const token = localStorage.getItem('jwtToken');
+
+            const response = await axios.get('http://localhost:8080/api/transactions', {
+                headers: {
+                    'Authorization': token
+                }
+            });
+
+            setData(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getTransactions();
+    }, []);
+
+
+    const totalDespesas = data
+                            .filter(transaction => transaction.transactionType === 'DESPESA')
+                            .reduce((total, transaction) => total + transaction.amount, 0);
+
+    const totalReceitas = data
+                            .filter(transaction => transaction.transactionType === 'DEPOSITO')
+                            .reduce((total, transaction) => total + transaction.amount, 0);
+
+    const totalAmount = totalDespesas + totalReceitas;
+
 
     // Dados de exemplo para as últimas transações
     const latestTransactions = [
@@ -29,7 +72,7 @@ export default function Dashboard() {
     };
 
     const closeModal = () => {
-        setModalOpen(false); // Fecha o modal
+        setModalOpen(false); 
     };
 
     return (
@@ -49,7 +92,7 @@ export default function Dashboard() {
                         <div className="dashboard-total-amount-content">
                             <h3><IoWalletOutline /> Saldo</h3>
                             <div className="dashboard-total-number">
-                                <p>R$ 10,00</p>
+                                <p>R$ {totalAmount.toFixed(2)}</p>
                                 <button className="add-transaction-button" onClick={addNewTransaction}>
                                     Adicionar transação
                                 </button>
@@ -58,11 +101,11 @@ export default function Dashboard() {
                         <div className="dashboard-amount-content">
                             <div className="amount-section">
                                 <h3><HiArrowTrendingUp /> Receitas</h3>
-                                <p>R$ 200,00</p>
+                                <p>R$ {totalReceitas.toFixed(2)}</p>
                             </div>
                             <div className="amount-section">
                                 <h3><HiArrowTrendingDown /> Despesas</h3>
-                                <p>R$ 400,00</p>
+                                <p>R$ {totalDespesas.toFixed(2)}</p>
                             </div>
                         </div>
                         <div className="dashboard-graphic-container">
@@ -117,7 +160,7 @@ export default function Dashboard() {
                                 </select>
                             </div>
                             <div className="last-transactions">
-                                {latestTransactions.map((transaction, index) => (
+                                {data.map((transaction, index) => (
                                     <div key={index}>
                                         <span>{transaction.name}</span>
                                         <span>{transaction.date}</span>
