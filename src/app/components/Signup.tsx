@@ -161,7 +161,7 @@ export default function Signup() {
                 </form>
             </section>
             <section className="main-section">
-                <h1>You should, moveIT!</h1>
+                <h1>Track your money, Now !!</h1>
                 <img src="src/assets/svg/main-ilustration.svg" alt="Main Illustration" />
             </section>
         </main>
