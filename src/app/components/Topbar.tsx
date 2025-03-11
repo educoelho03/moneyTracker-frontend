@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
+import LogoutModal from "./LogoutModal";
 
 import "../../styles/topbar.css";
 
 export default function Topbar() {
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
     const userName = localStorage.getItem("name");
     const navigate = useNavigate();
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
 
     return (
         <div className="topbar-container">
@@ -15,9 +26,11 @@ export default function Topbar() {
                     <button onClick={() => navigate("/transacoes")}>Transações</button>
                 </div>
                 <div className="topbar-user">
-                    <span>Olá, {userName}</span>
+                    <button onClick={openModal}>Olá, {userName}</button>
                 </div>
             </div>
+
+            {modalOpen && <LogoutModal onClose={closeModal} />}
         </div>
     );
 }

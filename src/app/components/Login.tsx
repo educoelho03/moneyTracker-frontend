@@ -40,9 +40,10 @@ export default function Login() {
             });
 
             const { token } = response.data;
-
+            
             // Armazena o token no localStorage
             localStorage.setItem('jwtToken', token);
+            localStorage.setItem('email', email)
             navigate('/dashboard');
         } catch (err) {
             handleShowAlert();

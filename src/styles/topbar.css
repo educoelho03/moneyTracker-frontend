@@ -33,6 +33,12 @@
 }
 
 .topbar-user {
-    margin-left: auto; 
-    color: #333; /* Cor do texto */
+    margin-left: auto;
+}
+
+.topbar-user button{
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
 }

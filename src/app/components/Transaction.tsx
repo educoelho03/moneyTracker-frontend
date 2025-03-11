@@ -18,7 +18,6 @@ export default function Transaction() {
     const loadTransactions = async () => {
         try {
             const token = localStorage.getItem('jwtToken');
-            console.log(token);
 
             const response = await axios.get('http://localhost:8080/api/transactions', {
                 headers: {

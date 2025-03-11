@@ -74,7 +74,7 @@
     margin-top: 25px;
     border: 1px solid #000;
     border-radius: 8px;
-    width: 50%;
+    width: 100%;
 }
 
 .dashboard-graphic-content {
@@ -149,6 +149,7 @@
 
 .last-transactions div {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
