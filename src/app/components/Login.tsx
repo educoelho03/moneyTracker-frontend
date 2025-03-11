@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "../../styles/defaultLogin.css";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
+import axios from 'axios';
+import { FcGoogle } from "react-icons/fc";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function Login() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleRedirectSignup = () => {
-        navigate('/signup');
-    };
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const handleShowAlert = () => {
         toast.error('Credenciais invalidas', {
@@ -29,6 +29,7 @@ export default function Login() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsLoading(true)
 
         try {
             const response = await axios.post('http://localhost:8080/api/login', {
@@ -43,66 +44,90 @@ export default function Login() {
             navigate('/dashboard');
         } catch (err) {
             handleShowAlert();
+        } finally {
+            setIsLoading(false)
         }
+    };
+
+    const handleGoogleLogin = () => {
+        // Logica login google
+        console.log("Login with Google");
     };
 
     return (
         <>
-        <ToastContainer />
-        <main>
-            <section className="form-section">
-                <img src="src/assets/svg/money-tracker-logo.png" className="logo-login-image" alt="Logo"/>
-                <h2>Login into your account</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-wrapper">
-                        <label htmlFor="email">Email</label>
-                        <div className="input-container">
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="johndoe@gmail.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
+            <ToastContainer />
+            <main>
+                <section className="form-section">
+                    <img src="src/assets/svg/money-tracker-logo.png" className="logo-login-image" alt="Logo"/>
+                    <h3>Welcome Back</h3>
+                    <div className="btn-wrapper">
+                        <button
+                            className="btn-login-google"
+                            onClick={handleGoogleLogin}
+                        >
+                            <FcGoogle className="mr-2 size-5" />
+                            Sign in with Google
+                        </button>
+
+                        <div className="divider">
+                            <div></div>
+                            <span>OR</span>
+                            <div></div>
                         </div>
                     </div>
 
-                    <div className="input-wrapper">
-                        <label htmlFor="password">Your Password</label>
-                        <div className="input-container">
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                    <form onSubmit={handleSubmit}>
+                        <div className="input-wrapper">
+                            <label htmlFor="email">Email</label>
+                            <div className="input-container">
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="m@example.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="btn-wrapper">
-                        <button type="submit" className="btn-primary">
-                            Login Now
-                        </button>
-                        <div className="divider">
-                            <div></div>
-                            <span>or</span>
-                            <div></div>
+
+                        <div className="input-wrapper">
+                            <label htmlFor="password">Your Password</label>
+                            <div className="input-container">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
                         </div>
-                        <button
-                            type="button"
-                            className="btn-secondary"
-                            onClick={handleRedirectSignup}
-                        >
-                            Create your Account 
-                        </button>
-                    </div>
-                </form>
-            </section>
-            <section className="main-section">
-                <h1>Track your money, Now!!</h1>
-                <img src="src/assets/svg/main-ilustration.svg" alt="Main Illustration" />
-            </section>
-        </main>
+                        <div className="btn-wrapper">
+                            <button type="submit" className="btn-primary" disabled={isLoading}>
+                                {isLoading ? (
+                                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        <CircularProgress size={20} sx={{ color: 'white' }} />
+                                    </Box>
+                                ) : (
+                                    "Sign In"
+                                )}
+                            </button>
+
+                            <div className="mt-4 text-center text-sm">
+                                Don&apos;t have an account?{" "}
+                                <a href="/signup" className="underline underline-offset-4">
+                                    Sign up
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <section className="main-section">
+                    <h1>Track your money, Now!!</h1>
+                    <img src="src/assets/svg/main-ilustration.svg" alt="Main Illustration" />
+                </section>
+            </main>
         </>
     );
 }

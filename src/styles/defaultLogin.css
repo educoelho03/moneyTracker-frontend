@@ -37,9 +37,9 @@ main .form-section {
     padding: 0 35px;
 }
 
-main h2 {
+main h3 {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 45px;
 }
 
@@ -55,15 +55,35 @@ main button {
     cursor: pointer;
 }
 
+main .btn-login-google {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    border: 1px solid rgb(226, 226, 226);
+}
+
+main .btn-login-google:hover {
+    background-color: var(--gray-secondary-bg);
+}
+
 main .btn-primary {
     background-color: var(--primary-color);
     color: white;
     box-shadow: 0px 8px 12px rgba(148.23004603385925, 64.33935597538948, 255, 0.2);
 }
 
+main .btn-primary:hover {
+    background-color: #5b25a3;
+}
+
 main .btn-secondary {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+}
+
+main .btn-secondary:hover {
+    background-color: var(--gray-secondary-bg);
 }
 
 /* Estilos do formulário */
@@ -77,7 +97,6 @@ form {
 
 form span {
     font-size: 14px;
-    text-decoration: underline;
     color: var(--secondary-color);
     text-align: end;
 }
@@ -115,7 +134,7 @@ form span {
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 30px;
+    gap: 1.5rem;
 }
 
 .btn-wrapper .divider {
@@ -125,9 +144,10 @@ form span {
     gap: 20px;
     width: 100%;
     font-size: 14px;
-    color: var(--gray-bg);
+    color: grey;
     font-weight: 400;
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 .btn-wrapper .divider div {

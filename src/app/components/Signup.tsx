@@ -1,10 +1,13 @@
+import  React, { useState } from "react";
 import "../../styles/defaultLogin.css";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import axios from "axios";
-import React from 'react';
 
 export default function Signup() {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const navigate = useNavigate();
 
     const handleRedirectToLogin = () => {
@@ -43,6 +46,7 @@ export default function Signup() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsLoading(true)
 
         const name = (document.getElementById("name") as HTMLInputElement).value;
         const email = (document.getElementById("email") as HTMLInputElement).value;
@@ -63,12 +67,13 @@ export default function Signup() {
 
             localStorage.setItem("name", name);
 
-            // Exibe o toast de sucesso e redireciona após o toast ser fechado
             handleShowSuccess("Cadastro realizado com sucesso!", () => {
-                handleRedirectToLogin(); // Redireciona para a página de login
+                handleRedirectToLogin(); 
             });
         } catch (error: any) {
             handleShowAlert("Falha ao realizar o cadastro.");
+        } finally {
+            setIsLoading(false)
         }
     };
 
@@ -128,8 +133,15 @@ export default function Signup() {
 
                     {/* Botões */}
                     <div className="btn-wrapper">
-                        <button type="submit" className="btn-primary">
-                            Sign Up
+
+                        <button type="submit" className="btn-primary" disabled={isLoading}>
+                            {isLoading ? (
+                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <CircularProgress size={20} sx={{ color: 'white' }} />
+                                </Box>
+                            ) : (
+                                "Sign Up"
+                            )}
                         </button>
                         <div className="divider">
                             <div></div>
