@@ -8,6 +8,7 @@ main {
 }
 
 main section {
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +22,7 @@ main section {
 }
 
 .logo-sigunp-image {
-    width: 250px;
+    width: 280px;
     margin-bottom: 40px;
     margin-top: 35px;
 }
@@ -118,6 +119,7 @@ form span {
     align-items: center;
     background-color: var(--gray-secondary-bg);
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .input-container input {
@@ -160,4 +162,10 @@ form span {
     background-color: rgb(223, 132, 132);
     color: white;
     width: 100%;
+}
+
+.input-wrapper a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--primary-color);
 }

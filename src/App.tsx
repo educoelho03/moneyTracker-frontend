@@ -1,9 +1,10 @@
-import React from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Login from './app/components/Login';
-import Signup from './app/components/Signup';
 import DashboardPage from './app/pages/DashboardPage';
 import TransactionPage from './app/pages/TransactionPage';
+import LoginPage from './app/pages/LoginPage';
+import SignupPage from './app/pages/SignupPage';
+import ForgotPasswordPage from './app/pages/ForgotPasswordPage';
+import ResetPasswordPage from './app/pages/ResetPasswordPage.tsx';
 
 // Componente de rota privada
 const PrivateRoute = () => {
@@ -15,9 +16,11 @@ function App() {
     return (
         <Routes>
             {/* Rotas públicas */}
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
 
             {/* Rotas protegidas */}
             <Route path="/dashboard" element={<PrivateRoute />}>

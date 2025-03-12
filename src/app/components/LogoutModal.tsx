@@ -1,7 +1,8 @@
-import { useEffect } from "react";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+
 import "../../styles/logoutModal.css";
+
 
 interface LogoutModalProps {
     onClose: () => void;

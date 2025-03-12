@@ -41,7 +41,6 @@ export default function Login() {
 
             const { token } = response.data;
             
-            // Armazena o token no localStorage
             localStorage.setItem('jwtToken', token);
             localStorage.setItem('email', email)
             navigate('/dashboard');
@@ -105,6 +104,7 @@ export default function Login() {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
+                            <a href="/forgot-password">forgot your password?</a>
                         </div>
                         <div className="btn-wrapper">
                             <button type="submit" className="btn-primary" disabled={isLoading}>
@@ -119,7 +119,7 @@ export default function Login() {
 
                             <div className="mt-4 text-center text-sm">
                                 Don&apos;t have an account?{" "}
-                                <a href="/signup" className="underline underline-offset-4">
+                                <a href="/signup" style={{textDecoration:'none', color: 'var(--primary-color)'}} className="underline underline-offset-4">
                                     Sign up
                                 </a>
                             </div>
